@@ -1,8 +1,9 @@
 FROM ikenney/base
 
-WORK_DIR /home/dev
-ENV HOME=/home/dev PROFILE=/home/dev/.zshrc
+WORKDIR /home/dev
+ENV PROFILE=/home/dev/.zshrc NVM_DIR=/home/dev/.nvm
 USER dev
-RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.23.3/install.sh | bash && . ~/.nvm/nvm.sh && nvm install stable && echo "source ~/.nvm/nvm.sh" >> home/dev/.zshrc
-
+RUN curl https://raw.githubusercontent.com/creationix/nvm/v0.23.3/install.sh | bash 
+#RUN ~/.nvm/nvm.sh && nvm install stable
+RUN /bin/zsh -c ". ~/.nvm/nvm.sh && mkdir ~/src && cd ~/src && nvm install stable"
 CMD [ "/bin/zsh" ]
