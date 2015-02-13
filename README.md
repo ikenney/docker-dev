@@ -16,5 +16,7 @@ for node:
 
     docker build -t ikenney/node node
    
+for rails and node
 
+    docker build -t ikenney/full full
 
