@@ -15,6 +15,8 @@ RUN apt-get install curl -y
 
 RUN useradd -ms /bin/zsh dev
 RUN echo "dev ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/dev_user && chmod 0440 /etc/sudoers.d/dev_user
-COPY dotfiles /home/dev
+COPY dotfiles /home/dev/
 RUN chown -R dev:dev /home/dev/. && chmod 400 /home/dev/.ssh/id_rsa
+USER dev
+RUN git clone --recursive https://github.com/ikenney/vim-bundles.git /home/dev/.vim/bundle
 CMD [ "/bin/zsh" ]
